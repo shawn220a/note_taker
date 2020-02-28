@@ -1,0 +1,22 @@
+{
+  "name": "note_taker",
+  "version": "1.0.0",
+  "description": "This is an app that will let you take notes",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawn220a/note_taker.git"
+  },
+  "author": "Shawn Tschoepe",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/shawn220a/note_taker/issues"
+  },
+  "homepage": "https://github.com/shawn220a/note_taker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
