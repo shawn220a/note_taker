@@ -6,7 +6,7 @@ module.exports = (app) => {
   app.get('/api/notes', (req, res) => {
     fs.readFile('db/db.json', (err, data) => {
       if (err) throw err;
-      
+
       let notesData = JSON.parse(data);
       res.json(notesData);
     });
@@ -14,6 +14,7 @@ module.exports = (app) => {
 
   // Write to JSON file
   app.post('/api/notes', (req, res) => {
+    console.log(req);
     let newData = req.body;
 
     fs.readFile('db/db.json', (err, data) => {

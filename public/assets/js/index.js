@@ -7,6 +7,8 @@ const $noteList = $(".list-container .list-group");
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
 
+let index = 0;
+
 // A function for getting all notes from the db
 let getNotes = () => {
   return $.ajax({
@@ -52,6 +54,7 @@ let renderActiveNote = () => {
 // Get the note data from the inputs, save it to the db and update the view
 let handleNoteSave = () => {
   let newNote = {
+    id: index++,
     title: $noteTitle.val(),
     text: $noteText.val()
   };
@@ -70,6 +73,8 @@ let handleNoteDelete = (event) => {
   let note = $(this)
     .parent(".list-group-item")
     .data();
+
+  console.log(note);
 
   if (activeNote.id === note.id) {
     activeNote = {};
@@ -111,7 +116,7 @@ let renderNoteList = (notes) => {
 
   for (let i = 0; i < notes.length; i++) {
     let note = notes[i];
-
+    console.log(note);
     let $li = $("<li class='list-group-item'>").data(note);
     let $span = $("<span>").text(note.title);
     let $delBtn = $(
@@ -123,11 +128,13 @@ let renderNoteList = (notes) => {
   }
 
   $noteList.append(noteListItems);
+  console.log(noteListItems);
 };
 
 // Gets notes from the db and renders them to the sidebar
 let getAndRenderNotes = () => {
   return getNotes().then((data) => {
+    console.log(data);
     renderNoteList(data);
   });
 };
