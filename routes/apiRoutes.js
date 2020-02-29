@@ -1,5 +1,3 @@
-let notesData = require('../db/db');
-
 module.exports = (app) => {
 
   app.get('/api/notes', (req, res) => {
@@ -9,4 +7,8 @@ module.exports = (app) => {
   app.post('/api/notes', (req, res) => {
     console.log(req.body);
   });
+
+  // app.delete('/api/notes/:id', (req, res) => {
+
+  // });
 };
