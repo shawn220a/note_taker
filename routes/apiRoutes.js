@@ -11,7 +11,16 @@ module.exports = (app) => {
   });
 
   app.post('/api/notes', (req, res) => {
-    console.log(req.body);
+    let newData = req.body;
+    fs.readFile('db/db.json', (err, data) => {
+      if (err) throw err;
+      let notesData = JSON.parse(data);
+      notesData.push(newData);
+      newData = JSON.stringify(notesData);
+      fs.writeFile('db/db.json', newData, (err) => {
+        if (err) throw err;
+      });
+    });
   });
 
   // app.delete('/api/notes/:id', (req, res) => {
