@@ -67,17 +67,13 @@ let handleNoteDelete = (event) => {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
 
-  let note = $(this)
+  let note = $(event.target)
     .parent(".list-group-item")
     .data();
-
-  console.log(event);
 
   if (activeNote.id === note.id) {
     activeNote = {};
   }
-
-  // console.log(note.id);
 
   deleteNote(note.id).then(() => {
     getAndRenderNotes();
@@ -86,8 +82,8 @@ let handleNoteDelete = (event) => {
 };
 
 // Sets the activeNote and displays it
-let handleNoteView = () => {
-  activeNote = $(this).data();
+let handleNoteView = (event) => {
+  activeNote = $(event.target).data();
   renderActiveNote();
 };
 
@@ -133,7 +129,6 @@ let renderNoteList = (notes) => {
 // Gets notes from the db and renders them to the sidebar
 let getAndRenderNotes = () => {
   return getNotes().then((data) => {
-    console.log(data);
     renderNoteList(data);
   });
 };

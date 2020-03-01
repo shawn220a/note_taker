@@ -35,11 +35,15 @@ module.exports = (app) => {
 
   // Delete JSON file
   app.delete('/api/notes/:id', (req, res) => {
-    console.log(req);
-    // fs.readFile('db/db.json', (err, data) => {
-    //   if (err) throw err;
-    //   let notesData = JSON.parse(data);
-    //   res.json(notesData);
-    // });
+    fs.readFile('db/db.json', (err, data) => {
+      if (err) throw err;
+      let notesData = JSON.parse(data);
+      removeData = notesData.filter((notesData) => {
+        return notesData.id === req.params.id;
+      });
+      notesData.splice(removeData, 1);
+      console.log(notesData);
+      res.json(notesData);
+    });
   });
 };
