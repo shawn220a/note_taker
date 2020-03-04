@@ -37,18 +37,23 @@ module.exports = (app) => {
   // Delete JSON file
   app.delete('/api/notes/:id', (req, res) => {
     const reqID = req.params.id;
+    let indexIwant;
 
     fs.readFile('db/db.json', (err, data) => {
       if (err) throw err;
       let notesData = JSON.parse(data);
 
       let note = notesData.filter((note) => {
-        return note.id = reqID;
+        return note.id === reqID;
       })[0];
 
-      const index = notesData.indexOf(note);
+      notesData.forEach((item, index) => {
+        if(item.id === note.id) {
+          indexIwant = index;
+        }
+      });
 
-      notesData.splice(index, 1);
+      notesData.splice(indexIwant, 1);
 
       newData = JSON.stringify(notesData);
 
