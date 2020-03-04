@@ -111,7 +111,7 @@ let renderNoteList = (notes) => {
 
   for (let i = 0; i < notes.length; i++) {
     let note = notes[i];
-    // console.log(note);
+
     let $li = $("<li class='list-group-item'>").data(note);
     let $span = $("<span>").text(note.title);
     let $delBtn = $(
@@ -123,7 +123,6 @@ let renderNoteList = (notes) => {
   }
 
   $noteList.append(noteListItems);
-  // console.log(noteListItems);
 };
 
 // Gets notes from the db and renders them to the sidebar
