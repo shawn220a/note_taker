@@ -29,6 +29,7 @@ module.exports = (app) => {
       newData = JSON.stringify(notesData);
       fs.writeFile('db/db.json', newData, (err) => {
         if (err) throw err;
+        res.json(newData);
       });
     });
   });
